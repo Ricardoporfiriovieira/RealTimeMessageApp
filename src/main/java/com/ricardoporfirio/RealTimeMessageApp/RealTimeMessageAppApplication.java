@@ -10,4 +10,6 @@ public class RealTimeMessageAppApplication {
 		SpringApplication.run(RealTimeMessageAppApplication.class, args);
 	}
 
+	
+
 }

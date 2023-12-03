@@ -9,10 +9,14 @@ import com.ricardoporfirio.RealTimeMessageApp.repositories.MessageRepository;
 import org.springframework.web.bind.annotation.RequestBody;
 import jakarta.validation.Valid;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,9 +38,10 @@ public class MessageController {
 
     @PostMapping("/send")
     String sendMessage(@RequestBody @Valid MessageDTO message){
-        MessageModel messageObject = new MessageModel(message);
-        messageRepository.save(messageObject);
+        //MessageModel messageObject = new MessageModel(message);
+        //messageRepository.save(messageObject);
         return "ok";
     }
+
 
 }
