@@ -1,5 +1,7 @@
+
 const socket = new WebSocket('ws://localhost:8080/conect');
 const Client = Stomp.over(socket);
+
 
 function openPopup() {
     const popup = document.getElementById("popup");
@@ -30,7 +32,6 @@ function sendMessage(e) {
     };
 
     Client.send("/app/chatMessage", {}, JSON.stringify(message));
-    listMessage();
 
     document.getElementById("messageInput").value = "";
 }
@@ -43,23 +44,10 @@ function displayMessage(message, name) {
     chatMessages.appendChild(messageElement);
 }
 
-function listMessage() {
-    Client.send('/app/getMessages', {});
-}
-
-function exibirMensagem(mensagem) {
-    // Lógica para exibir a mensagem na interface do usuário
-    console.log('Nova mensagem:', mensagem);
-}
-
-Client.subscribe('/canal', function (message) {
-    var mensagem = JSON.parse(message.body);
-    exibirMensagem(mensagem);
-});
-
-function connect() {
+function connect(){
     Client.connect({}, function (frame) {
         console.log('Conectado: ' + frame);
+
 
         Client.subscribe('/canal', function (message) {
             const chatMessage = JSON.parse(message.body);
@@ -67,6 +55,7 @@ function connect() {
         });
     });
 }
+
 
 connect();
 openPopup();
