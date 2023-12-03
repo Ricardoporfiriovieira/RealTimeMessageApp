@@ -5,17 +5,17 @@ import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-import com.ricardoporfirio.RealTimeMessageApp.models.GroceryItem;
+import com.ricardoporfirio.RealTimeMessageApp.models.MessageModel;
 
 
 
-public interface ItemRepository extends MongoRepository<GroceryItem, String> {
+public interface MessageRepository extends MongoRepository<MessageModel, String> {
     
     @Query("{name:'?0'}")
-    GroceryItem findItemByName(String name);
+    MessageModel findItemByName(String name);
     
     @Query(value="{category:'?0'}", fields="{'name' : 1, 'quantity' : 1}")
-    List<GroceryItem> findAll(String category);
+    List<MessageModel> findAll(String category);
     
     public long count();
 
