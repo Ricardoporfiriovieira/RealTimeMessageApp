@@ -15,19 +15,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class MessageModel {
+    @Id
+    private String id;
 
+    private String message;
+    private String messageSender;
+    private ZonedDateTime time;
     
-
-        @Id
-        private String id;
-
-        private String message;
-        private String messageSender;
-        private ZonedDateTime time;
-        
-        public MessageModel(MessageDTO message) {
-            super();
-            this.message = message.body_message();
-            this.messageSender = message.messageSender();
-        }
+    public MessageModel(MessageDTO message) {
+        super();
+        this.message = message.body_message();
+        this.messageSender = message.messageSender();
+    }
 }
